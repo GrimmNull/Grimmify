@@ -1,0 +1,31 @@
+.song-nr {
+    width: 10%;
+}
+
+.song-cover {
+    width: 10%;
+}
+
+.song-title {
+    width: 30%;
+}
+
+.song-album {
+    width: 30%;
+}
+
+.song-duration {
+    width: 20%;
+}
+
+.melody {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.melody > .song-cover {
+    height: 50px; 
+    width: 50px;
+    margin-inline: auto;
+}

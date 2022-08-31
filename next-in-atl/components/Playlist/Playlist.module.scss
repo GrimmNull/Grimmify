@@ -1,0 +1,42 @@
+.playlist {
+    width: 100%;
+    height: 90%;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.table-header {
+    width: 90%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+}
+
+.song-nr {
+    width: 10%;
+}
+
+.song-cover {
+    width: 10%;
+}
+
+.song-title {
+    width: 30%;
+}
+
+.song-album {
+    width: 30%;
+}
+
+.song-duration {
+    width: 20%;
+}
+
+.songs {
+    width: 90%;
+    height: 90%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
