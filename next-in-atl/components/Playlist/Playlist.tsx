@@ -21,27 +21,30 @@ export const Playlist = () => {
 
     return (
         <div className={styles.playlist}>
-<div className={styles["table-header"]}>
-                    <span className={styles["song-nr"]}>
-                        #
-                    </span>
-                    <span className={styles["song-cover"]}>
-                        Cover
-                    </span>
-                    <span className={styles["song-title"]}>
-                        Title
-                    </span>
-                    <span className={styles["song-album"]}>
-                        Album
-                    </span>
-                    <span className={styles["song-duration"]}>
-                        Duration
-                    </span>
-                </div>
-                <div id="songs-wrapper" className={styles["songs"]}>
-                    <Song index={1} songInfo={songList[0]} />
-                </div>
+            <div className={styles["table-header"]}>
+                <span className={styles["song-nr"]}>
+                    #
+                </span>
+                <span className={styles["song-cover"]}>
+                    Cover
+                </span>
+                <span className={styles["song-title"]}>
+                    Title
+                </span>
+                <span className={styles["song-album"]}>
+                    Album
+                </span>
+                <span className={styles["song-duration"]}>
+                    Duration
+                </span>
+            </div>
+            <div id="songs-wrapper" className={styles["songs"]}>
+                {/* <Song index={1} songInfo={songList[0]} /> */}
+                {songList.map(function (details, index) {
+                    return <Song index={index + 1} songInfo={details}  />
+                })}
+            </div>
         </div>
-        
+
     );
 };
