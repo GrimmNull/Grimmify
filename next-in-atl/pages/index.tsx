@@ -1,10 +1,18 @@
+import { SliceLike, SliceZoneLike } from '@prismicio/react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import { FunctionComponent } from 'react'
+import { BottomBar } from '../components/BottomBar/BottomBar'
 import { Playlist } from '../components/Playlist/Playlist'
+import { createClient } from '../prismicio'
 import styles from '../styles/Home.module.css'
 
-const Home: NextPage = () => {
+interface IProps {
+  songs: SliceZoneLike<SliceLike<string>>;
+}
+
+const Home: FunctionComponent<IProps> = (props) => {
 
   return (
     <div className={styles.container}>
@@ -14,9 +22,30 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Playlist />
+      <Playlist slices={props.songs} />
+      { /* @ts-ignore */}
+      <BottomBar songInfo={props.songs[0].primary} changeNext={() => { }} changePrev={() => { }} />
     </div>
   )
+}
+
+export const getServerSideProps = async () => {
+  let notFound = false;
+  let data;
+  const client = createClient();
+
+  try {
+    data = await client.getByUID("playlist", "main");
+  } catch (e) {
+    console.error("The playlist was not found");
+    notFound = true;
+  }
+  console.dir(data, { depth: null });
+
+  return {
+    props: { songs: data?.data.slices },
+    notFound: notFound
+  }
 }
 
 export default Home
