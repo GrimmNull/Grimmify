@@ -1,5 +1,5 @@
 git add .
 
-git commit -m"Added Prismic to project"
+git commit -m"Added Prismic integration"
 
 git push

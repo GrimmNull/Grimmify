@@ -1,7 +1,7 @@
 import React from "react";
 import { ISongInfo, Song } from "../Song/Song";
 import styles from "./Playlist.module.scss";
-import { IProps } from "../../slices/Song";
+import { IPrimary, IProps } from "../../slices/Song";
 import { SliceLike, SliceZone, SliceZoneLike } from "@prismicio/react";
 import { components } from "../../slices";
 
@@ -22,6 +22,7 @@ const songList: ISongInfo[] = [
 
 interface IPlaylist {
     slices: SliceZoneLike<SliceLike<string>>;
+    setSong: (data: IPrimary) => void;
 }
 
 export const Playlist = (props: IPlaylist) => {

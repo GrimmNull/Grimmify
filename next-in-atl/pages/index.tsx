@@ -2,10 +2,11 @@ import { SliceLike, SliceZoneLike } from '@prismicio/react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useState } from 'react'
 import { BottomBar } from '../components/BottomBar/BottomBar'
 import { Playlist } from '../components/Playlist/Playlist'
 import { createClient } from '../prismicio'
+import { IPrimary } from '../slices/Song'
 import styles from '../styles/Home.module.css'
 
 interface IProps {
@@ -13,6 +14,8 @@ interface IProps {
 }
 
 const Home: FunctionComponent<IProps> = (props) => {
+  // @ts-ignore
+  const [currentSong, setCurrentSong] = useState(props.songs[0].primary);
 
   return (
     <div className={styles.container}>
@@ -22,9 +25,8 @@ const Home: FunctionComponent<IProps> = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Playlist slices={props.songs} />
-      { /* @ts-ignore */}
-      <BottomBar songInfo={props.songs[0].primary} changeNext={() => { }} changePrev={() => { }} />
+      <Playlist slices={props.songs} setSong={(data: IPrimary) => setCurrentSong(data)} />
+      <BottomBar songInfo={currentSong} changeNext={() => { }} changePrev={() => { }} />
     </div>
   )
 }
