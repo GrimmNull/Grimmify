@@ -14,8 +14,11 @@ interface IProps {
 }
 
 const Home: FunctionComponent<IProps> = (props) => {
+  // const [currentSong, setCurrentSong] = useState(props.songs[0].primary);
+  const [currentSong, setCurrentSong] = useState(0);
   // @ts-ignore
-  const [currentSong, setCurrentSong] = useState(props.songs[0].primary);
+  const [songsList, setSongsList] = useState(props.songs.map(song => song.primary));
+  console.log(currentSong)
 
   return (
     <div className={styles.container}>
@@ -25,8 +28,20 @@ const Home: FunctionComponent<IProps> = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Playlist slices={props.songs} setSong={(data: IPrimary) => setCurrentSong(data)} />
-      <BottomBar songInfo={currentSong} changeNext={() => { }} changePrev={() => { }} />
+      <Playlist slices={props.songs} setSong={(data: number) => setCurrentSong(data)} songsList={songsList} currentIndex={currentSong} />
+      <BottomBar songInfo={songsList[currentSong]} changeNext={() => {
+        if (currentSong < songsList.length - 1) {
+          setCurrentSong(currentSong + 1);
+        } else {
+          setCurrentSong(0);
+        }
+      }} changePrev={() => {
+        if (currentSong > 0) {
+          setCurrentSong(currentSong - 1);
+        } else {
+          setCurrentSong(songsList.length - 1);
+        }
+      }} />
     </div>
   )
 }
@@ -42,7 +57,6 @@ export const getServerSideProps = async () => {
     console.error("The playlist was not found");
     notFound = true;
   }
-  console.dir(data, { depth: null });
 
   return {
     props: { songs: data?.data.slices },

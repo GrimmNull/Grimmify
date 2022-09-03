@@ -4,6 +4,8 @@
     background: #444;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .button {
@@ -15,4 +17,39 @@
     color: white;
     background-color: aquamarine;
     border-radius: 256px;
+    cursor: pointer;
+}
+
+.topPart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100% - 10px);
+}
+
+.songControlButton {
+    margin-inline: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.controlWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progressWrapper {
+    width: 100%;
+    height: 10px;
+    background: #999;
+    bottom: 0;
+}
+
+.progress {
+    background-color: aquamarine;
+    border-radius: 16px;
+    height: 100%;
+    transition: all 300ms 0ms linear;
 }

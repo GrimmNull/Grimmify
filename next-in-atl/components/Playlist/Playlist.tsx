@@ -22,7 +22,15 @@ const songList: ISongInfo[] = [
 
 interface IPlaylist {
     slices: SliceZoneLike<SliceLike<string>>;
-    setSong: (data: IPrimary) => void;
+    songsList: IPrimary[];
+    currentIndex: number;
+    setSong: (data: number) => void;
+}
+
+export interface ISliceContext {
+    setSong: (data: number) => void;
+    currentIndex: number;
+    songsList: IPrimary[];
 }
 
 export const Playlist = (props: IPlaylist) => {
@@ -50,7 +58,11 @@ export const Playlist = (props: IPlaylist) => {
                 {/* {songList.map(function (details, index) {
                     return <Song index={index + 1} songInfo={details}  />
                 })} */}
-                <SliceZone slices={props.slices} components={components} />
+                <SliceZone slices={props.slices} components={components} context={{
+                    setSong: props.setSong,
+                    songsList: props.songsList,
+                    currentIndex: props.currentIndex
+                } as ISliceContext} />
             </div>
         </div>
 
