@@ -22,14 +22,28 @@
   display: flex;
   align-items: center;
   width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 250ms 0ms ease-in-out;
+
+  &:hover {
+    background: #cccccc67;
+  }
+
+  & > .song-cover {
+    height: 50px;
+    width: 50px;
+    margin-inline: auto;
+  }
 }
 
-.melody > .song-cover {
-  height: 50px;
-  width: 50px;
-  margin-inline: auto;
-}
+.songPlaying {
+  background: #aaaaaa23;
 
-.songPlaying > * {
-  color: aquamarine;
+  & > * {
+    color: aquamarine;
+  }
 }

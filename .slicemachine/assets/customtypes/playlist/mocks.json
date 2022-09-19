@@ -11,6 +11,17 @@
   "lang": "en-us",
   "alternate_languages": [],
   "data": {
+    "albumCover": {
+      "dimensions": {
+        "width": 900,
+        "height": 500
+      },
+      "alt": null,
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1504198070170-4ca53bb1c1fa"
+    },
+    "title": "wheel",
+    "description": "breathing",
     "slices": []
   }
 }

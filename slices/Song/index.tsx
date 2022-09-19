@@ -14,6 +14,12 @@ interface IImage {
   url: string;
 }
 
+export interface RichTextBlock {
+  type: string;
+  text: string;
+  spans: string[];
+}
+
 export interface IPrimary {
   title: string;
   album: string;
@@ -22,6 +28,7 @@ export interface IPrimary {
     link_type: string;
     url: string;
   }
+  lyrics: RichTextBlock[];
 }
 
 export interface IProps {
@@ -67,18 +74,3 @@ const Song = ({ slice, context }: IProps) => {
 }
 
 export default Song
-
-/*
-true && true && false && true ...
-
-|| 
-false || false || true || false ...
-*/
-
-/* 
-montarea - componenta este adauga arborelui HTML
-
-updates 
-
-unmount - scoaterea componentei din arborele HTML
-*/

@@ -15,6 +15,7 @@ a {
   box-sizing: border-box;
   text-align: center;
   color: white;
+  scroll-behavior: smooth;
 }
 
 @media (prefers-color-scheme: dark) {

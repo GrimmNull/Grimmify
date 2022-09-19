@@ -45,6 +45,7 @@
     height: 10px;
     background: #999;
     bottom: 0;
+    cursor: pointer;
 }
 
 .progress {
@@ -52,4 +53,21 @@
     border-radius: 16px;
     height: 100%;
     transition: all 300ms 0ms linear;
+    cursor: pointer;
 }
+.lyricsBtnWrapper {
+    position: relative;
+
+    .lyricsBtn {
+        cursor: pointer;
+        transition: color 250ms 0ms ease-in-out;
+        position: absolute;
+        right: -20px;
+        transform: translateY(-50%);
+    }
+
+    .btnActive {
+        color: aquamarine;
+    }
+}
+

@@ -6,8 +6,8 @@
       {}
     ],
     "primary": {
-      "title": "thousand",
-      "album": "basket",
+      "title": "flew",
+      "album": "quarter",
       "cover": {
         "dimensions": {
           "width": 900,
@@ -15,12 +15,19 @@
         },
         "alt": null,
         "copyright": null,
-        "url": "https://images.unsplash.com/photo-1607582278038-6bebbd4d7b72"
+        "url": "https://images.unsplash.com/photo-1537498425277-c283d32ef9db"
       },
       "songlink": {
         "link_type": "Web",
-        "url": "https://slicemachine.dev"
-      }
+        "url": "https://prismic.io"
+      },
+      "lyrics": [
+        {
+          "type": "paragraph",
+          "text": "Consectetur consequat voluptate consectetur aliqua culpa Lorem proident Lorem aliqua non incididunt culpa occaecat.",
+          "spans": []
+        }
+      ]
     },
     "slice_type": "song"
   }
