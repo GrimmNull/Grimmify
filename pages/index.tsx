@@ -1,21 +1,25 @@
 import {SliceLike, SliceZoneLike} from '@prismicio/react'
-import type {NextPage} from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import React, {FunctionComponent, useState} from 'react'
 import {BottomBar} from '../components/BottomBar/BottomBar'
 import {Playlist} from '../components/Playlist/Playlist'
 import {createClient} from '../prismicio'
-import {IPrimary} from '../slices/Song'
+import {IImage, IPrimary} from '../slices/Song'
 import styles from '../styles/Home.module.css'
 import {Lyrics} from "../components/Lyrics/Lyrics";
 
+export interface IAlbum {
+    albumCover: IImage;
+    title: string;
+    description: string;
+}
+
 interface IProps {
+    albumInfo: IAlbum;
     songs: SliceZoneLike<SliceLike<string>>;
 }
 
 const Home: FunctionComponent<IProps> = (props) => {
-    // const [currentSong, setCurrentSong] = useState(props.songs[0].primary);
     const [currentSong, setCurrentSong] = useState(0);
     // @ts-ignore
     const [songsList, setSongsList] = useState<IPrimary[]>(props.songs.map(song => song.primary));
@@ -33,26 +37,26 @@ const Home: FunctionComponent<IProps> = (props) => {
             <Lyrics songInfo={songsList[currentSong]} lyricsActive={lyricsActive} currentSeek={currentSongProgress}
                     songRef={songRef as HTMLMediaElement}/>
             <Playlist slices={props.songs} setSong={(data: number) => setCurrentSong(data)} songsList={songsList}
-                      currentIndex={currentSong}/>
+                      currentIndex={currentSong} albumInfo={props.albumInfo}/>
             <BottomBar songInfo={songsList[currentSong]}
-                        changeNext={() => {
-                            if (currentSong < songsList.length - 1) {
-                                setCurrentSong(currentSong + 1);
-                            } else {
-                                setCurrentSong(0);
-                            }
-                        }}
-                        changePrev={() => {
-                            if (currentSong > 0) {
-                                setCurrentSong(currentSong - 1);
-                            } else {
-                                setCurrentSong(songsList.length - 1);
-                            }
-                        }}
-                        lyricsActive={lyricsActive}
-                        toggleLyrics={setLyricsActive}
-                        setProgress={setCurrentSongProgress}
-                        setSeeker={setSongRef}/>
+                       changeNext={() => {
+                           if (currentSong < songsList.length - 1) {
+                               setCurrentSong(currentSong + 1);
+                           } else {
+                               setCurrentSong(0);
+                           }
+                       }}
+                       changePrev={() => {
+                           if (currentSong > 0) {
+                               setCurrentSong(currentSong - 1);
+                           } else {
+                               setCurrentSong(songsList.length - 1);
+                           }
+                       }}
+                       lyricsActive={lyricsActive}
+                       toggleLyrics={setLyricsActive}
+                       setProgress={setCurrentSongProgress}
+                       setSeeker={setSongRef}/>
         </div>
     )
 }
@@ -70,7 +74,13 @@ export const getServerSideProps = async () => {
     }
 
     return {
-        props: {songs: data?.data.slices},
+        props: {
+            songs: data?.data.slices, albumInfo: {
+                albumCover: data?.data.albumCover,
+                title: data?.data.title,
+                description: data?.data.description
+            }
+        },
         notFound: notFound
     }
 }

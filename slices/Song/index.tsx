@@ -4,7 +4,7 @@ import styles from "./Song.module.scss";
 import { ISliceContext } from '../../components/Playlist/Playlist';
 import clsx from 'clsx';
 
-interface IImage {
+export interface IImage {
   dimensions: {
     width: number;
     height: number;
