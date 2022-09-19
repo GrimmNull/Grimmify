@@ -54,7 +54,7 @@ export const Lyrics: FunctionComponent<IProps> = (props) => {
         if (lyricsMap && (lyricsMap as ILyricsMap[]).length > 0) {
             const result = binarySearch(lyricsMap as ILyricsMap[], currentSeek);
             const currentRow = (lyricsMap as ILyricsMap[]).findIndex(row => row.time === result);
-            arrayOfRefs.current[currentRow].scrollIntoView({ behavior: "smooth", block: "start" });
+            arrayOfRefs.current[currentRow]?.scrollIntoView({ behavior: "smooth", block: "start" });
         }
     }, [currentSeek])
 
