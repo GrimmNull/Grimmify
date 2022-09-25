@@ -64,10 +64,14 @@ export const Lyrics: FunctionComponent<IProps> = (props) => {
 
     return (<div className={styles.wrapper}>
         <div className={clsx(styles.screen, {[styles.lyricsActive]: lyricsActive})}>
-            {lyricsMap && (lyricsMap as ILyricsMap[]).map((lyricsLine, index) => (<span key={lyricsLine.time}
-                                                                               ref={el => arrayOfRefs.current[index] = el as HTMLSpanElement}
-                                                                               className={clsx(styles.lyrics, {[styles.active]: currentSeek >= lyricsLine.time})}
-                                                                               onClick={() => songRef.currentTime = lyricsLine.time}>{lyricsLine.row}</span>))}
+            <div className={styles.topGradient} />
+            <div className={styles.bottomGradient} />
+            <div className={styles.lyricsWrapper}>
+                {lyricsMap && (lyricsMap as ILyricsMap[]).map((lyricsLine, index) => (<span key={lyricsLine.time}
+                                                                                            ref={el => arrayOfRefs.current[index] = el as HTMLSpanElement}
+                                                                                            className={clsx(styles.lyrics, {[styles.active]: currentSeek >= lyricsLine.time})}
+                                                                                            onClick={() => songRef.currentTime = lyricsLine.time}>{lyricsLine.row}</span>))}
+            </div>
         </div>
     </div>)
 }
